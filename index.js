@@ -5,7 +5,7 @@ let socket = require('socket.io');
 // express is a function
 let app = express();
 
-let port = 4000;
+let port = process.env.PORT || 3000;
 //create server
 let server = app.listen(port, function () {
     console.log('Listening to request on port: ' + port);
@@ -25,6 +25,9 @@ io.on('connection', function (socket) { // a particular socket between a client 
     // global variable
 
     socket.on('sendMessage', function (data) {
-        io.sockets.emmit('sendMessage', data);
+        io.sockets.emit('sendMessage', data);
     });
+    socket.on('typing', data => {
+        socket.broadcast.emit('typing', data);
+    })
 });
