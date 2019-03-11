@@ -1,6 +1,5 @@
 // Make connection from client
-let port = 5000;
-let url = "localhost:" + port;
+let url = "https://adgaudg05.herokuapp.com";
 let socket = io.connect(url);
 
 // Query DOM;
